@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Día Soleado</title>
+</head>
+<body>
+	<canvas id="miLienzo"></canvas>
+</body>
+<script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+<script>
+	var codigoDePrograma = function(instanciaProcessing) {
+		with (instanciaProcessing) {
+			size(400, 400);
+
+			// Fondo (cielo azul)
+			background(135, 206, 250); 
+
+			// Césped
+			fill(34, 139, 34); // Color verde
+			noStroke();
+			rect(0, 350, 400, 50);
+
+			// Sol
+			fill(255, 223, 0); // Color amarillo para el sol
+			noStroke();
+			ellipse(350, 50, 100, 100);
+
+			// Rayos del sol
+			stroke(255, 223, 0);
+			strokeWeight(5);
+			for (var i = 0; i < 360; i += 45) {
+				var x = 350 + 70 * cos(radians(i));
+				var y = 50 + 70 * sin(radians(i));
+				line(350, 50, x, y); // Dibuja los rayos alrededor del sol
+			}
+
+			// Nubes
+			fill(255);
+			noStroke();
+			ellipse(100, 100, 80, 50); // Nube izquierda
+			ellipse(150, 100, 80, 50); 
+			ellipse(200, 100, 80, 50); // Nube derecha
+			ellipse(250, 100, 80, 50); 
+
+			// Agregando detalles (más nubes)
+			ellipse(300, 150, 100, 60); // Nube adicional
+			ellipse(350, 150, 100, 60);
+		}
+	};
+
+	var canvas = document.getElementById("miLienzo");
+	var instancia = new Processing(canvas, codigoDePrograma);
+</script>
+</html>
